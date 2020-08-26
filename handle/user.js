@@ -1,6 +1,21 @@
-const { use } = require("../routes");
-
-module.exports =  function userHandle(req, res, next){
+const login = async(req, res, next) => {
+    console.log(3)
     console.log(req.body)
-    res.send({success:true,data: req.params});
+    res.send({
+        success: true,
+        data: "login"
+    });
+}
+
+const logout = async(req, res, next) => {
+    console.log(req.body)
+    res.send({
+        success: true,
+        data: "logout"
+    });
+}
+
+module.exports = {
+    login,
+    logout
 }

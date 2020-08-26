@@ -1,9 +1,19 @@
 var express = require('express');
-var router = express.Router();
+
+const userHandler = require('../handle/user');
 
 /* GET home page. */
-router.get('/', function(req, res, next) {
-  res.render('index', { title: 'Express' });
-});
+const routes = () => {
+    var router = express.Router();
+    console.log(22);
+    // user
+    router.get('/user/login', userHandler.login);
+    router.get('/user/logout', userHandler.logout);
 
-module.exports = router;
+    // product
+    // router.get('/products', userHandler.login);
+    // router.get('/user/logout', userHandler.logout);
+    return router;
+}
+
+module.exports = routes;
