@@ -1,19 +1,23 @@
 var express = require('express');
+ 
 
-const userHandler = require('../handle/user');
+const userHandle = require('../handle/user');
+ 
 
-/* GET home page. */
-const routes = () => {
-    var router = express.Router();
-    console.log(22);
+const initRoutes = async (app) => {
+ 
+    // root
+    app.get('/', function (req, res, next) {
+      res.send({ success: true, data: 'root' });
+    });
+  
     // user
-    router.get('/user/login', userHandler.login);
-    router.get('/user/logout', userHandler.logout);
+    app.post('/user/login', userHandle.login);
+    app.get('/user/logout', userHandle.logout);
 
-    // product
-    // router.get('/products', userHandler.login);
-    // router.get('/user/logout', userHandler.logout);
-    return router;
-}
-
-module.exports = routes;
+    app.get('/user/:id', userHandle.updatedPassword);
+    
+  };
+  
+  module.exports = initRoutes;
+  
